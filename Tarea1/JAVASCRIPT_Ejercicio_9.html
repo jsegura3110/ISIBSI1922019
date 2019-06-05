@@ -1,0 +1,21 @@
+<html>
+ <head>
+  <title>Ejercicio #9</title>
+ </head>
+<script>
+	var palabra = prompt("Escribir una palabra: ").toLowerCase().replace(/ /g, "");
+	var resultado = Palindromo(palabra);
+	alert(resultado);
+
+	function Palindromo(palabra){
+	for(var i=0;i<palabra.length;i++){
+		if(palabra[i]!=palabra[palabra.length-i-1]){
+		return "NO ES PALINDROMO";
+		}
+	return "ES PALINDROMO";
+	}
+	}
+</script>
+<body>
+</body>
+</html>

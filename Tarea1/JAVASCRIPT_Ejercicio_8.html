@@ -1,0 +1,23 @@
+<html>
+ <head>
+  <title>Ejercicio #8</title>
+ </head>
+<script>
+	var cadena = prompt("Ingresar texto: ").replace(/ /g, "");
+	var resultado = ValidarCadena(cadena);
+	alert(resultado);
+
+	function ValidarCadena(cadena){
+		if(cadena == cadena.toUpperCase()){
+		return "ESTA FORMADO POR MAYUSCULAS";
+		}
+		if(cadena == cadena.toLowerCase()){
+		return "ESTA FORMADO POR MINUSCULAS";
+		}else{
+		return "ESTA FORMADO POR UNA MEZCLA DE AMBAS";
+		}
+	}
+</script>
+<body>
+</body>
+</html>
