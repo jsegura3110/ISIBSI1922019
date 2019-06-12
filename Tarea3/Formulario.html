@@ -1,0 +1,48 @@
+<html>
+<title>Tarea #3 </title>
+<body>
+	<h1>Formulario Web</h1>
+	Nombre de Usuario: <input type="text" id="usuario" name="usuario" placeholder="Digite su usuario"><br><br>
+	Password: <input type="password" id="password" name="password" placeholder="Digite su contrasena "><br><br>
+	Email: <input type="email" id="correo" name="email" placeholder="Digite su correo"><br><br>
+	Fecha de Nacimiento: <input type="date" id="fec_nac" name="fec_nac"><br><br>
+	Campo Oculto: <input type="hidden" name ="Oculto">
+	<br><br><br>
+	<input type="button" value="Enviar" onclick="Validar()">
+	
+</body>
+
+<script>
+
+function Validar(){
+
+var vusuario = document.getElementById("usuario").value;
+var expr_usu = /^[a-zA-Z]{1,15}[.]{1,1}[a-zA-Z]{1,15}$/;
+if (vusuario == ""){
+	alert("El usuario es un campo requerido")
+	return false
+}
+else if (!expr_usu1.test(vusuario)){
+	alert("El usuario " + vusuario + " no es valido");
+	return false;
+}
+
+var vcontra = document.getElementById("password").value;
+var expr_con = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,30}$/;
+if (!expr_con1.test(vcontra)){
+	alert("La contrasena no cumple con los requisitos requeridos");
+	return false;
+}
+
+var correo = document.getElementById("correo").value;
+var expr_correo = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+if (!expr_correo.test(correo)){
+	alert("La direccion de email no cumple con los requerimientos de email");
+	return false;
+}
+
+}
+
+</script>
+
+</html>

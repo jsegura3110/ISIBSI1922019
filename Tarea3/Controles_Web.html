@@ -1,0 +1,106 @@
+<html>
+<title>Tarea #3</title>
+<link rel="stylesheet" type="text/css" href="Controles_Web.css">
+<body>
+	<h1>Controles Web</h1>
+	
+<!--Control Web Tab-->	
+	<h2>Provincias</h2>
+<div class="Tab">
+	<button class="tablinks" onclick="Provincias(event,'San Jose')">San Jose</button>
+	<button class="tablinks" onclick="Provincias(event,'Alajuela')">Alajuela</button>
+	<button class="tablinks" onclick="Provincias(event,'Cartago')">Cartago</button>
+	<button class="tablinks" onclick="Provincias(event,'Heredia')">Heredia</button>
+	<button class="tablinks" onclick="Provincias(event,'Guanacaste')">Guanacaste</button>
+	<button class="tablinks" onclick="Provincias(event,'Puntarenas')">Puntarenas</button>
+	<button class="tablinks" onclick="Provincias(event,'Limon')">Limon</button>
+</div>
+
+<div id="San Jose" class="tabcontent">
+	<p>Es la capital de Costa Rica, en la cual se concentra los tres Poderes de la Republica y al Tribunal Supremo de Elecciones</p>
+</div>
+<div id="Alajuela" class="tabcontent">
+	<p>Es la provincia numero 2 de Costa Rica, se encuentra el aeropuero Juan Santamaria el mas importante del pais</p>
+</div>
+<div id="Cartago" class="tabcontent">
+	<p>Es la provincia numero 3, se encuentra enclavada en el centro del pais sin acceso a las costas</p>
+</div>
+<div id="Heredia" class="tabcontent">
+	<p>Es la provincia numero 4, por su extension territorial es la provincia mas pequena de Costa Rica</p>
+</div>
+<div id="Guanacaste" class="tabcontent">
+	<p>Es la provincia numero 5, comprende la mayor parte del antiguo Partido de Nicoya, el cual se anexo al pais el 25 de julio de 1824</p>
+</div>
+<div id="Puntarenas" class="tabcontent">
+	<p>Es la provincia numero 6, abarca la mayor parte de la costa Pacifica del pais</p>
+</div>
+<div id="Limon" class="tabcontent">
+	<p>Es la provincia numero 7, esta marcado por una gran diversidad cultural con una poblacion predominantemente de etnia afro-descendiente</p>
+</div>
+
+<!--Control Web Accordion -->
+<div>
+	<h2>Cantones</h2>
+<button class="accordion">San Jose</button>
+<div class="panel">
+	<p>Escazu</p>
+	<p>Desamparados</p>
+	<p>Aserri</p>
+</div>
+<button class="accordion">Alajuela</button>
+<div class="panel">
+	<p>San Carlos</p>
+	<p>Palmares</p>
+	<p>Poas</p>
+</div>
+<button class="accordion">Cartago</button>
+<div class="panel">
+	<p>Paraiso</p>
+	<p>El Guarco</p>
+	<p>Turrialba</p>
+</div>
+<button class="accordion">Heredia</button>
+<div class="panel">
+	<p>Barva</p>
+	<p>Belen</p>
+	<p>Santo Domingo</p>
+</div>
+
+</div>
+
+<script>
+
+<!--Tab-->
+function Provincias(evt, nombre) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(nombre).style.display = "block";
+  evt.currentTarget.className += "active";
+}
+
+<!--Accordion-->
+var acc = document.getElementsByClassName("accordion");
+var i;
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+
+</script>
+
+</body>
+</html>
