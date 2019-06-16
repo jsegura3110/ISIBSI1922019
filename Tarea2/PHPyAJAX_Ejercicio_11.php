@@ -1,24 +1,15 @@
-<html>
-<title>Ejercicio #11 PHP</title>
-<body>
-<h1>Resultado Calculadora </h1>
 <?php
-$valor1 = $_POST["Numero1"];
-$valor2 = $_POST["Numero2"];
-$operacion = $_POST["Operacion"];
+$operacion = $_POST['operacion'];
+$num1 = $_POST['num1'];
+$num2 = $_POST['num2'];
 
-	if($operacion == 1){
-		echo("Resultado: ".strval($valor1 + $valor2));
-	}
-	if($operacion == 2){
-		echo("Resultado: ".strval($valor1 - $valor2));
-	}
-	if($operacion == 3){
-		echo("Resultado: ".strval($valor1 * $valor2));
-	}
-	if($operacion == 4){
-		echo("Resultado: ".strval($valor1 / $valor2));
-	}
+if($operacion == 1){
+	echo ($num1 + $num2);
+}else if($operacion == 2){
+	echo ($num1 - $num2);
+}else if($operacion == 3){
+	echo ($num1 * $num2);
+}else if($operacion == 4){
+	echo ($num1 / $num2);
+}
 ?>
-</body>
-</html>
