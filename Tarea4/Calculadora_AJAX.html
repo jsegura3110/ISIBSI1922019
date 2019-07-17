@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Tarea #4</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.2./mootools.js"></script>
+<script src="mootols-1.2.3-core-yc.js" type="text/javascript"></script>
+</head>
+<body>
+	<h1>Calculadora</h1><br>
+	Numero1= <input type="number" id="numero1" name="Numero1"><br><br>
+	Numero2= <input type="number" id="numero2" name="Numero2"><br><br>
+	Operacion: <select id="operacion" name="Operacion">
+			<option value="1">Sumar</option>
+			<option value="2">Restar</option>
+			<option value="3">Multiplicar</option>
+			<option value="4">Dividir</option></select>
+	<br><br><br>		
+	<input type="button" value="Calcular" onclick="Calcular()"></input>
+	<br><br><br>
+	<div id="div_resultado">
+		<output id="resultado"></output>
+	</div>
+</body>
+
+<script>
+function Calcular(){
+var num1 = document.getElementById("numero1").value;
+var num2 = document.getElementById("numero2").value;
+var op = document.getElementById("operacion").value;
+var datos = "&operacion="+op+"&num1="+num1+"&num2="+num2;
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function(){
+	if (this.readyState == 4 && this.status == 200){
+	document.getElementById("resultado").innerHTML = this.responseText;
+	}
+};
+xmlhttp.open("POST", "Calculadora_AJAX.php", true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send(datos);
+}
+
+</script>
+</html>
