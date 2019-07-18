@@ -18,7 +18,7 @@
 		<label>Correo Electronico:</label>
 		<input type="text" name="correo" placeholder="            @" required=""><br><br>
 		<label>Sexo:</label>
-		<select name="sexo"  >
+		<select name="sexo">
 			  <option value="1">Masculino</option>
 			  <option value="2">Femenino</option>
 		</select><br><br>
@@ -33,20 +33,22 @@
 		<label>Telefono:</label>
 		<input type="text" name="tel" pattern="[0-9]{8}" placeholder="Ingrese numero de telefono" required="">
 		<br><br><br>
-		<button type="submit" name ="agregar" class="btn btn-primary">Almacenar datos</button><br><br>
+		<button type="submit" name ="almacenar" class="btn btn-primary">Almacenar datos</button><br><br>
 
 </div>
-<!-- Insertar datos a la BD -->
 	 </form>
+	 
+<!-- Insertar datos a la BD -->
 	<?php
 	 include("conexion.php");
-	 if(isset($_POST['agregar']))
+	 if(isset($_POST['almacenar']))
       { 
 			$nombre=$_POST['nombre'];
 			$ap1=$_POST['ap1'];
 			$ap2=$_POST['ap2'];
 			$cedula=$_POST['cedula'];
 			$correo=$_POST['correo'];
+			$sexo=$_POST['sexo'];
 			$direccion=$_POST['direccion'];
 			$provincia=$_POST['provincia'];
 			$canton=$_POST['canton'];
@@ -57,18 +59,28 @@
           echo "Todos los campos son obligatorios ";
         }else{
          mysqli_query($conexion, "INSERT INTO $tabla1_db 
-        (fecha_ordenes,
-        hora_ordenes,
-        nummesa_ordenes,
-		cliente_ordenes,
-		platillos_ordenes,
-        estado_ordenes)
-        values ('$fecha',
-        '$hora',
-        '$nummesa',
-		'$cliente',
-		'$platillos',
-        '$estado')");
+        (nombre,
+        apellido1,
+        apellido2,
+		cedula,
+		correo,
+		sexo,
+		direccion,
+		provincia,
+		canton,
+		distrito,
+        tel)
+        values ('$nombre',
+        '$ap1',
+        '$ap2',
+		'$cedula',
+		'$correo',
+		'$sexo',
+		'$direccion',
+		'$provincia',
+		'$canton',
+		'$distrito',
+        '$tel')");
          echo "Datos agregados exitosamente";
         }	
     }
