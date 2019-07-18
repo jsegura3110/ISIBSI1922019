@@ -9,16 +9,15 @@
 	<div class="container"> 
 	<form method="POST" action="registro-datos.php" class="Tabla table-condensed">
 		<label>Cedula:</label>
-		<input type="text" id="cedula" name="cedula" pattern="[0-9]{9}" placeholder="Digite su cedula -->" required="">
-		<button type="button" name="infocedula">✔</button><br><br>
+		<input type="text" id="cedula" name="cedula" placeholder="Digite su cedula" onchange="CargarDatos(this.value)"required=""><br><br>
 		<label>Nombre:</label>
-		<input type="text" name="nombre" required=""><br><br>
+		<input type="text" id="nombre" name="nombre" disabled><br><br>
 		<label>Primer Apellido:</label>
-		<input type="text" name="ap1" required=""><br><br>
+		<input type="text" id="ap1" name="ap1" disabled><br><br>
 		<label>Segundo Apellido:</label>
-		<input type="text" name="ap2" required=""><br><br>
+		<input type="text" id="ap2" name="ap2" disabled><br><br>
 		<label>Telefono:</label>
-		<input type="text" name="tel" pattern="[0-9]{8}" title="Numero de 8 digitos" placeholder="Digite numero de telefono" required=""><br><br>
+		<input type="text" name="tel" pattern="[0-9]{8}" title="Numero de 8 digitos" placeholder="Digite numero de telefono"><br><br>
 		<label>Provincia:</label>
 		<select id="provincia" name="provincia" onchange="CargarCantones(this.value)"></select><br><br>
 		<label>Canton:</label>
@@ -26,7 +25,7 @@
 		<label>Distrito:</label>
 		<select id="distrito" name="distrito"></select><br><br>
 		<label>Direccion Exacta:</label>
-		<input type="text" name="direccion" placeholder="Ingrese direccion exacta" required="">
+		<input type="text" name="direccion" placeholder="Ingrese direccion exacta">
 		<br><br><br>
 		<button type="submit" name="registrar" class="btn btn-primary">Registrar informacion</button><br><br>
 	</form>
@@ -40,6 +39,19 @@
 </body>
 
 <script>
+
+function CargarDatos(cedula){
+	
+	$.ajax({
+		dataType: "json",
+        url:"https://apis.gometa.org/cedulas/" + cedula,
+			}).done(function(data){
+				console.log(data.results[0]);
+				$("#nombre").val(data.results[0].firstname1);
+				$("#ap1").val(data.results[0].lastname1);
+				$("#ap2").val(data.results[0].lastname2);
+                    });
+}
 
 function CargarProvincias(){
 	
