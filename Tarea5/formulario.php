@@ -38,7 +38,7 @@
 </div>
 	 </form>
 	 
-<!-- Insertar datos a la BD -->
+<!-- Insertar Datos -->
 	<?php
 	 include("conexion.php");
 	 if(isset($_POST['almacenar']))
@@ -60,8 +60,8 @@
         }else{
          mysqli_query($conexion, "INSERT INTO $tabla1_db 
         (nombre,
-        apellido1,
-        apellido2,
+        ap1,
+        ap2,
 		cedula,
 		correo,
 		sexo,
@@ -85,6 +85,86 @@
         }	
     }
 	?>
+	<br/><br/>
+	
+<!-- Listar Datos -->
+<div class="container">
+	<table width="500" border="2" style="background-color: #f9f9f9;">
+		<tr>
+			<th>Nombre</th>
+			<th>Primer Apellido</th>
+			<th>Segundo Apellido</th>
+			<th>Cedula</th>
+			<th>Correo Electronico</th>
+			<th>Sexo</th>
+			<th>Direccion</th>
+			<th>Provincia</th>
+			<th>Canton</th>
+			<th>Distrito</th>
+			<th>Telefono</th>
+			<th>Editar</th>
+			<th>Borrar</th>
+	</tr>
+		<?php
+		$consulta= "SELECT * from $tabla1_db";
+		$ejecutar = mysqli_query($conexion,$consulta);
+		$i=0;
+  	while($fila=mysqli_fetch_array($ejecutar))
+  		{
+  			$nombre=$fila['nombre'];
+    		$ap1=$fila['ap1'];
+			$ap2=$fila['ap2'];
+			$cedula=$fila['cedula'];
+			$correo=$fila['correo'];
+			$sexo=$fila['sexo'];
+			$direccion=$fila['direccion'];
+			$provincia=$fila['provincia'];
+			$canton=$fila['canton'];
+			$distrito=$fila['distrito'];
+			$tel=$fila['tel'];
+			$i++;
+	?>
+		<tr align="center">
+		<td><?php echo $nombre;?></td>
+		<td><?php echo $ap1;?></td>
+		<td><?php echo $ap2;?></td>
+		<td><?php echo $cedula;?></td>
+		<td><?php echo $correo;?></td>
+		<td><?php echo $sexo;?></td>
+		<td><?php echo $direccion;?></td>
+		<td><?php echo $provincia;?></td>
+		<td><?php echo $canton;?></td>
+		<td><?php echo $distrito;?></td>
+		<td><?php echo $tel;?></td>
+
+		<td><a href="formulario.php?Editar=<?php echo $nombre;?>"</a>Editar</td>
+		<td><a href="formulario.php?Borrar=<?php echo $nombre;?>"</a>Borrar</td>
+	</tr>
+	<?php
+}
+?>
+	</table>
+	
+<!-- Editar Datos -->
+<?php
+ if(isset($_GET['Editar'])){
+ 	include("Editarformulario.php");
+ }
+?>
+<!-- Borrar Datos -->
+ <?php
+ if(isset($_GET['Borrar'])){
+ 	$borrar_id =$_GET['Borrar'];
+ 	$borrar="DELETE from $tabla1_db where nombre ='$borrar_id'";
+	$ejecutar=mysqli_query($conexion,$borrar);
+	if($ejecutar)
+	{
+		echo "<script>alert('Cliente ha sido borrado!')</script>";	
+	}
+		header('Location: formulario.php');
+ }
+?>
+
 </body>
 </html>
 <?php 
